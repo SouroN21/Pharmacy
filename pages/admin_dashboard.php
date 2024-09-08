@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../Styles/admin_dashboard.css">
-    <script src="../JS/admin.js" defer></script>
+    <script src="../JS/admin.js" defer></script> 
 </head>
 <body>
     <header>
@@ -29,12 +29,14 @@
                 <button class="view-button" data-type="contact">View Contact Us Info</button>
             </div>
         </section>
+        <section id="content">
+            <!-- Dynamic content will be loaded here -->
+        </section>
         <section>
             <h2>Admin Profile</h2>
             <div class="profile-info">
-                <!-- Hard-coded admin details for testing -->
-                <p><strong>Username:</strong> admin123</p>
-                <p><strong>Email:</strong> admin@example.com</p>
+                <p><strong>Username:</strong> <?php echo htmlspecialchars($admin['username']); ?></p>
+                <p><strong>Email:</strong> <?php echo htmlspecialchars($admin['email']); ?></p>
             </div>
         </section>
     </main>

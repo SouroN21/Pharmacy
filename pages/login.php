@@ -20,7 +20,7 @@
 
             <button type="submit">Login</button>
 
-            <a href="" class="href">Creare an Account</a>
+            <a href="register.php" class="href">Creare an Account</a>
         </form>
     </div>
     

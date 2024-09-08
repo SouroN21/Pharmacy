@@ -1,14 +1,16 @@
 <?php
+// Database configuration
 $host = 'localhost';
 $dbname = 'pharmacy';
 $username = 'root';
 $password = '';
 
-try {
-    // Create a new PDO instance
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+// Create a new MySQLi connection
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
 ?>
