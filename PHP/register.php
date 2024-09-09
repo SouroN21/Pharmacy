@@ -1,19 +1,18 @@
 <?php
-require_once 'config.php'; // Include the database connection file
+require_once 'config.php'; 
 
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
+
     $userType = $_POST['user_type'];
     
-    // Initialize variables
     $username = '';
     $password = '';
     $confirmPassword = '';
     $pharmacyName = null;
     $licenseNumber = null;
-    $pharmacistName = null; // Added for pharmacist's name
+    $pharmacistName = null;
 
     // Get common fields
     if ($userType === 'user') {
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST['pharmacy_password'];
         $confirmPassword = $_POST['pharmacy_confirm_password'];
     } elseif ($userType === 'pharmacist') {
-        $pharmacistName = $_POST['pharmacist_name']; // Capture pharmacist's name
+        $pharmacistName = $_POST['pharmacist_name']; 
         $username = $_POST['pharmacist_username'];
         $password = $_POST['pharmacist_password'];
         $confirmPassword = $_POST['pharmacist_confirm_password'];

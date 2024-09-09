@@ -1,9 +1,7 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Check if the user is logged in as a pharmacist
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'pharmacy') {
-    // Redirect to the login page if not logged in or not a pharmacist
     header("Location: login.php");
     exit();
 }
@@ -15,7 +13,7 @@ if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'pharmacy') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Medicine</title>
-    <link rel="stylesheet" href="../Styles/add_medicine.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="../Styles/add_medicine.css"> 
 </head>
 <body>
     <div class="container">

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadContent(type) {
     const contentDiv = document.getElementById('content');
-    const url = `../PHP/get_data.php?type=${type}`; // Single endpoint to fetch data
+    const url = `../PHP/get_data.php?type=${type}`; 
 
     fetch(url)
         .then(response => response.json())
@@ -34,7 +34,6 @@ function loadContent(type) {
             }
             contentDiv.innerHTML = htmlContent;
 
-            // Add click event listener to delete buttons
             document.querySelectorAll('.delete-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');

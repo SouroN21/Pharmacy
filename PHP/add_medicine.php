@@ -1,26 +1,24 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Check if the user is logged in as a pharmacist
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'pharmacy') {
-    // Redirect to the login page if not logged in or not a pharmacist
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit();
 }
 
 // Include database configuration
-require_once 'config.php'; // Make sure this file contains your database connection details
+require_once 'config.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $medicine_name = $_POST['medicine_name'];
     $price = $_POST['price'];
     $description = $_POST['description'];
-    $pharmacy_name = $_SESSION['username']; // Store the logged-in pharmacy name
+    $pharmacy_name = $_SESSION['username']; 
 
     // Handle image upload
     $image = $_FILES['image']['name'];
-    $target_dir = "../uploads/"; // Directory to save uploaded images
+    $target_dir = "../uploads/"; 
     $target_file = $target_dir . basename($image);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -57,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Execute the statement
             if ($stmt->execute()) {
                 echo "New medicine added successfully!";
-                header("Location: ../pages/all_medicines.php"); // Redirect to medicine store after successful addition
+                header("Location: ../pages/all_medicines.php"); 
                 exit();
             } else {
                 echo "Error: " . $stmt->error;
@@ -69,5 +67,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$conn->close(); // Close the database connection
+$conn->close();
 ?>

@@ -3,12 +3,12 @@ body {
     background-color: #f2f2f2;
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover; /* Ensures the image covers the entire viewport */
+    background-size: cover;
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    font-family: 'Arial', sans-serif; /* Added a clean font */
+    font-family: 'Arial', sans-serif; 
 }
 
 .register-container {

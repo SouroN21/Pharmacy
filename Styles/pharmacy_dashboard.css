@@ -1,15 +1,20 @@
 body {
+    background-image: url('../Images/loginBG.jpg');
+    background-size: cover;
     background-color: #f2f2f2; /* Light background color */
     font-family: 'Arial', sans-serif; /* Clean font */
     margin: 0; /* Remove default margin */
 }
 
 .container {
+    background-color: #ffffff; /* White background for the container */
+    border-radius: 10px; /* Rounded corners */
     max-width: 1200px; /* Max width for the container */
-    margin: 0 auto; /* Center the container */
-    padding: 20px; /* Padding around the container */
+    margin: 20px auto; /* Center the container with margin at the top and bottom */
+    padding: 30px; /* Padding around the container */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border: 5px solid #c0e8ffb2; 
 }
-
 header {
     background-color: #007bff; /* Header background color */
     color: white; /* Text color */

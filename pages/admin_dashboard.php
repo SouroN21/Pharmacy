@@ -1,18 +1,15 @@
 <?php
 session_start();
 
-// Check if the user is logged in as an admin
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
-    // Redirect to the login page if not logged in or not an admin
     header("Location: ../pages/login.php");
     exit();
 }
 
-// Retrieve admin information from the database
 $admin = getAdminInfo($_SESSION['username']);
 
 function getAdminInfo($username) {
-    require_once '../PHP/config.php'; // Include your database configuration file
+    require_once '../PHP/config.php'; 
 
     try {
         $stmt = $conn->prepare("SELECT uname_admin FROM pharmacy_admin WHERE uname_admin = ?");

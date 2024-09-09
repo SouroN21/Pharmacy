@@ -1,18 +1,16 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Check if the user is logged in as a pharmacist
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'pharmacy') {
-    // Redirect to the login page if not logged in or not a pharmacist
     header("Location: login.php");
     exit();
 }
 
 // Include database configuration
-require_once '../PHP/config.php'; // Make sure this file contains your database connection details
+require_once '../PHP/config.php'; 
 
 // Fetch all medicines from the database
-$query = "SELECT * FROM medicines"; // Adjust table name as necessary
+$query = "SELECT * FROM medicines"; 
 $result = $conn->query($query);
 ?>
 
@@ -22,7 +20,7 @@ $result = $conn->query($query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Medicines</title>
-    <link rel="stylesheet" href="../Styles/all_medicines.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="../Styles/all_medicines.css"> 
 </head>
 <body>
     <div class="container">
@@ -52,7 +50,6 @@ $result = $conn->query($query);
                 </thead>
                 <tbody>
                     <?php
-                    // Check if there are results and display them
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
                             echo '<tr>';
@@ -85,5 +82,5 @@ $result = $conn->query($query);
 </html>
 
 <?php
-$conn->close(); // Close the database connection
+$conn->close(); 
 ?>

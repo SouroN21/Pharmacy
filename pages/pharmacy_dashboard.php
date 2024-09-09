@@ -1,14 +1,11 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Check if the user is logged in as a pharmacist
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'pharmacy') {
-    // Redirect to the login page if not logged in or not a pharmacist
     header("Location: login.php");
     exit();
 }
 
-// Retrieve pharmacist information from the session
 $username = $_SESSION['username'];
 ?>
 
@@ -18,7 +15,7 @@ $username = $_SESSION['username'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pharmacy Dashboard</title>
-    <link rel="stylesheet" href="../Styles/pharmacy_dashboard.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="../Styles/pharmacy_dashboard.css"> 
 </head>
 <body>
     <div class="container">

@@ -8,9 +8,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         event.preventDefault();
         errorDiv.textContent = 'Please enter both username and password.';
         errorDiv.style.display = 'block';
-    } else {
-        // Hide error message if validation passes
-        errorDiv.style.display = 'none';
-        
+    } else {       
+        errorDiv.style.display = 'none';   
     }
 });

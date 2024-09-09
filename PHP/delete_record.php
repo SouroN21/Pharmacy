@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 session_start();
 require_once 'config.php'; 
 
-// Check if the user is logged in as an admin
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
     header("HTTP/1.1 403 Forbidden");
     exit();
@@ -29,10 +28,10 @@ switch ($type) {
         $query = "DELETE FROM pharmacy_pharmacist WHERE id_pharmacist = ?";
         break;
     case 'feedback':
-        $query = "DELETE FROM user_feedback WHERE id = ?"; // Adjust table name as necessary
+        $query = "DELETE FROM user_feedback WHERE id = ?"; 
         break;
     case 'contact':
-        $query = "DELETE FROM contact_us WHERE id = ?"; // Adjust table name as necessary
+        $query = "DELETE FROM contact_us WHERE id = ?"; 
         break;
     default:
         header("HTTP/1.1 400 Bad Request");

@@ -1,18 +1,16 @@
 <?php
-session_start(); // Start the session
+session_start(); 
 
-// Check if the user is logged in as a pharmacist
 if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'pharmacy') {
-    // Redirect to the login page if not logged in or not a pharmacist
-    header("Location: login.php");
+    header("Location: ../pages/login.php");
     exit();
 }
 
 // Include database configuration
-require_once 'config.php'; // Make sure this file contains your database connection details
+require_once 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the medicine ID from the POST request
+
     $id = $_POST['id'];
 
     // Prepare SQL statement to delete the medicine
@@ -33,5 +31,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
-$conn->close(); // Close the database connection
+$conn->close(); 
 ?>
