@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+// Check if the user is logged in as an admin
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'admin') {
+    // Redirect to the login page if not logged in or not an admin
+    header("Location: ../pages/login.php");
+    exit();
+}
+
+// Retrieve admin information from the database
+$admin = getAdminInfo($_SESSION['username']);
+
+function getAdminInfo($username) {
+    require_once '../PHP/config.php'; // Include your database configuration file
+
+    try {
+        $stmt = $conn->prepare("SELECT uname_admin FROM pharmacy_admin WHERE uname_admin = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return null;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +48,7 @@
             <ul>
                 <li><a href="admin_dashboard.php">Home</a></li>
                 <li><a href="profile.php">Profile</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="../PHP/logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -31,13 +65,6 @@
         </section>
         <section id="content">
             <!-- Dynamic content will be loaded here -->
-        </section>
-        <section>
-            <h2>Admin Profile</h2>
-            <div class="profile-info">
-                <p><strong>Username:</strong> <?php echo htmlspecialchars($admin['username']); ?></p>
-                <p><strong>Email:</strong> <?php echo htmlspecialchars($admin['email']); ?></p>
-            </div>
         </section>
     </main>
     <footer>

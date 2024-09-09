@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $row['upass_user'])) {
             $_SESSION['username'] = $username; // Set session variable
             $_SESSION['user_type'] = 'user'; // Set user type
-            header("Location: ../pages/dashboard.php"); // Redirect to dashboard
+            header("Location: ../pages/index.php"); // Redirect to dashboard
             exit();
         }
     }
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $row['upass_pharmacy'])) {
             $_SESSION['username'] = $username; // Set session variable
             $_SESSION['user_type'] = 'pharmacy'; // Set user type
-            header("Location: ../pages/dashboard.php"); // Redirect to dashboard
+            header("Location: ../pages/pharmacy_dashboard.php"); // Redirect to dashboard
             exit();
         }
     }
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $row['upass_admin'])) {
             $_SESSION['username'] = $username; // Set session variable
             $_SESSION['user_type'] = 'admin'; // Set user type
-            header("Location: ../pages/dashboard.php"); // Redirect to dashboard
+            header("Location: ../pages/admin_dashboard.php"); // Redirect to dashboard
             exit();
         }
     }

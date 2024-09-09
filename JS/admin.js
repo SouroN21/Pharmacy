@@ -9,151 +9,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadContent(type) {
     const contentDiv = document.getElementById('content');
-    let htmlContent = '';
+    const url = `../PHP/get_data.php?type=${type}`; // Single endpoint to fetch data
 
-    switch (type) {
-        case 'user':
-            htmlContent = `
-                <h2>Users</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>john_doe</td>
-                            <td>john@example.com</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>jane_smith</td>
-                            <td>jane@example.com</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-            break;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let htmlContent = '';
+            if (data.length > 0) {
+                htmlContent += '<table><thead><tr>';
+                Object.keys(data[0]).forEach(key => {
+                    htmlContent += `<th>${key.charAt(0).toUpperCase() + key.slice(1)}</th>`;
+                });
+                htmlContent += '<th>Action</th></tr></thead><tbody>';
+                data.forEach(item => {
+                    htmlContent += '<tr>';
+                    Object.values(item).forEach(value => {
+                        htmlContent += `<td>${value}</td>`;
+                    });
+                    htmlContent += `<td><button class="delete-button" data-id="${item.id}">Delete</button></td></tr>`;
+                });
+                htmlContent += '</tbody></table>';
+            } else {
+                htmlContent = '<p>No records found.</p>';
+            }
+            contentDiv.innerHTML = htmlContent;
 
-        case 'pharmacy':
-            htmlContent = `
-                <h2>Pharmacies</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Location</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>HealthPlus Pharmacy</td>
-                            <td>New York</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Wellness Pharmacy</td>
-                            <td>Los Angeles</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-            break;
+            // Add click event listener to delete buttons
+            document.querySelectorAll('.delete-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    deleteRecord(type, id);
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            contentDiv.innerHTML = '<p>Error loading content.</p>';
+        });
+}
 
-        case 'pharmacist':
-            htmlContent = `
-                <h2>Pharmacists</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>License Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Dr. Emily Clark</td>
-                            <td>PH123456</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Dr. Michael Lee</td>
-                            <td>PH654321</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-            break;
-
-        case 'feedback':
-            htmlContent = `
-                <h2>Feedback</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>Feedback</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>john_doe</td>
-                            <td>Great service!</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>jane_smith</td>
-                            <td>Very helpful staff.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-            break;
-
-        case 'contact':
-            htmlContent = `
-                <h2>Contact Us Info</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Alex Johnson</td>
-                            <td>alex.johnson@example.com</td>
-                            <td>Inquiry about products.</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Sarah Brown</td>
-                            <td>sarah.brown@example.com</td>
-                            <td>Request for support.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            `;
-            break;
-
-        default:
-            htmlContent = '<p>Content not available.</p>';
-            break;
-    }
-
-    contentDiv.innerHTML = htmlContent;
+function deleteRecord(type, id) {
+    const url = `../PHP/delete_record.php?type=${type}&id=${id}`;
+    fetch(url, {
+        method: 'POST'
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Record deleted successfully!');
+                loadContent(type); 
+            } else {
+                alert('Error deleting record.');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting record:', error);
+            alert('Error deleting record.');
+        });
 }
