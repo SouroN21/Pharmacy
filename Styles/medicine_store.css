@@ -83,6 +83,10 @@ nav ul li a:hover {
 .button:hover {
     background-color: #4be06b;
 }
+.button_logout-button{
+    color: rgb(241, 48, 80);
+    font-size: large;
+}
 
 footer {
     text-align: center; /* Center footer text */

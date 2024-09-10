@@ -1,11 +1,18 @@
 <?php
-session_start(); // Start the session
+session_start(); 
+
+if (!isset($_SESSION['username']) || $_SESSION['user_type'] !== 'user') {
+    header("Location: login.php");
+    exit();
+}
+
+$username = $_SESSION['username'];
 
 // Include database configuration
-require_once '../PHP/config.php'; // Make sure this file contains your database connection details
+require_once '../PHP/config.php'; 
 
 // Fetch medicines from the database
-$query = "SELECT * FROM medicines"; // Adjust table name as necessary
+$query = "SELECT * FROM medicines"; 
 $result = $conn->query($query);
 ?>
 
@@ -27,11 +34,12 @@ $result = $conn->query($query);
                     <li><a href="medicine_store.php">Medicine Store</a></li>
                     <li><a href="upload_prescription.php">Upload Prescription</a></li>
                     <li><a href="cart.php">Cart</a></li>
-                    <li><a href="login.php">Login</a></li>
+                    <li><a href="../PHP/logout.php" class="button_logout-button">Logout :<?php echo htmlspecialchars($username); ?></a></li> 
                 </ul>
             </nav>
         </header>
         <main>
+            <h2>Featured Medicines</h2>
             <div class="medicine-grid">
                 <?php
                 // Check if there are results and display them
@@ -40,7 +48,7 @@ $result = $conn->query($query);
                         echo '<div class="medicine-card">';
                         echo '<img src="../uploads/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['medicine_name']) . '">';
                         echo '<h3>' . htmlspecialchars($row['medicine_name']) . '</h3>';
-                        echo '<p>Price: $' . htmlspecialchars($row['price']) . '</p>';
+                        echo '<p>Price: Rs :' . htmlspecialchars($row['price']) . '</p>';
                         echo '<p>' . htmlspecialchars($row['description']) . '</p>';
                         echo '<a href="add_to_cart.php?id=' . htmlspecialchars($row['id']) . '" class="button">Buy Now</a>';
                         echo '</div>';

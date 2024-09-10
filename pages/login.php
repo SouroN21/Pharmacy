@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="../Styles/login.css">
 </head>
 <body>
-
+    <!-- 
+        ! user :naveenu naveenu 
+        ! Pharmacy :Pharmacy , Pharmacy
+        ! pharmacist :na123,na123
+        ! admin :naveen , na123
+    -->
     <div class="login-container">
         <h2>Login</h2>
         <div id="error" class="error">Invalid username or password.</div>

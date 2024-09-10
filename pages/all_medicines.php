@@ -32,7 +32,7 @@ $result = $conn->query($query);
                     <li><a href="add_medicine.php">Add Medicine</a></li>
                     <li><a href="medicine_store.php">Medicine Store</a></li>
                     <li><a href="view_prescriptions.php">View Prescriptions</a></li>
-                    <li><a href="logout.php">Logout</a></li>
+                    <li><a href="../PHP/logout.php">Logout</a></li>
                 </ul>
             </nav>
         </header>
@@ -56,10 +56,10 @@ $result = $conn->query($query);
                             echo '<td>' . htmlspecialchars($row['id']) . '</td>';
                             echo '<td>' . htmlspecialchars($row['medicine_name']) . '</td>';
                             echo '<td>' . htmlspecialchars($row['price']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['description']) . '</td>';
+                            echo '<td class="des">' . htmlspecialchars($row['description']) . '</td>';
                             echo '<td><img src="../uploads/' . htmlspecialchars($row['image']) . '" alt="' . htmlspecialchars($row['medicine_name']) . '" style="width: 50px; height: auto;"></td>';
                             echo '<td>
-                                    <a href="update_medicine.php?id=' . htmlspecialchars($row['id']) . '" class="button">Update</a>
+                                    <a href="update_medicine.php?id=' . htmlspecialchars($row['id']) . '" class="button2">Update</a>
                                     <form method="POST" action="../PHP/delete_medicine.php" style="display:inline;">
                                         <input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">
                                         <button type="submit" class="button1" onclick="return confirm(\'Are you sure you want to delete this medicine?\');">Delete</button>

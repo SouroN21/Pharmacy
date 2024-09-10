@@ -1,42 +1,121 @@
 body {
-    background-color: #f2f2f2; /* Light background color */
     font-family: 'Arial', sans-serif; /* Clean font */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
     margin: 0; /* Remove default margin */
 }
 
-.container {
+header {
+    background-color: #007bff; /* Header background color */
+    color: white; /* Text color */
+    padding: 20px; /* Padding */
     text-align: center; /* Center text */
-    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for the container */
-    padding: 40px;
+}
+
+nav ul {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+}
+
+nav ul li {
+    display: inline; /* Display list items inline */
+    margin: 0 15px; /* Space between items */
+}
+
+nav ul li a {
+    color: rgb(0, 0, 0); /* Link color */
+    text-decoration: none; /* Remove underline */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.container {
+    max-width: 1200px; /* Max width for the container */
+    margin: 20px auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
+    background-color: #f9f9f9; /* Light gray background color */
     border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 20px #0000001a; /* Soft shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
-h1 {
-    margin-bottom: 30px; /* Space below the heading */
-    color: #333; /* Darker color for contrast */
+h1, h2 {
+    color: #333; /* Darker color for headings */
+    margin-bottom: 20px; /* Space below headings */
 }
 
-.button-group {
-    display: flex; /* Use flexbox for button alignment */
-    justify-content: center; /* Center buttons */
-    gap: 20px; /* Space between buttons */
+p {
+    color: #555; /* Medium gray for text */
+    font-size: 16px; /* Font size */
+    margin-bottom: 20px; /* Space below paragraphs */
 }
+
+.medicine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid layout */
+    grid-gap: 20px; /* Space between grid items */
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+    grid-gap: 20px; /* Space between grid items */
+}
+
+.service-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.service-card img {
+    width: 80px; /* Fixed width for images */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px;
+}
+
 
 .button {
     background-color: #007bff; /* Primary button color */
     color: white; /* Text color */
-    padding: 15px 25px; /* Button padding */
+    padding: 10px 20px; /* Button padding */
     text-decoration: none; /* Remove underline */
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s; /* Smooth transition */
-    font-size: 16px; /* Font size */
+    font-size: 14px; /* Font size */
+    display: inline-block; /* Display as inline-block */
+    margin-top: 10px; /* Space above the button */
 }
 
 .button:hover {
     background-color: #0056b3; /* Darker shade on hover */
+}
+
+footer {
+    text-align: center; /* Center footer text */
+    margin-top: 20px; /* Space above footer */
+    color: #777; /* Footer text color */
+    padding: 20px; /* Padding */
+    background-color: #f2f2f2; /* Light gray background color */
+}
+
+.medicine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    grid-gap: 20px; 
+}
+
+.medicine-card {
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.medicine-card img {
+    width: 150px; /* Fixed width for images */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px;
 }

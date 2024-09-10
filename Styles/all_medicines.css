@@ -57,13 +57,16 @@ th, td {
     text-align: left; /* Align text to the left */
     border-bottom: 1px solid #ddd; /* Bottom border for rows */
 }
+.des{
+    max-width: 300px;
+}
 
 th {
-    background-color: #007bff; /* Header background color */
+    background-color: #2a7acf; /* Header background color */
     color: white; /* Header text color */
 }
 
-.button {
+.button2 {
     background-color: #007bff; /* Button color */
     color: white; /* Text color */
     padding: 8px 12px; /* Padding */
@@ -73,12 +76,12 @@ th {
     text-decoration: none; /* Remove underline */
 }
 
-.button:hover {
+.button2:hover {
     background-color: #0056b3; /* Darker shade on hover */
 }
 
 .button1 {
-    background-color: #ff0000; /* Button color */
+    background-color: #ccb6b6; /* Button color */
     color: white; /* Text color */
     padding: 8px 12px; /* Padding */
     border: none; /* No border */
@@ -95,4 +98,38 @@ footer {
     text-align: center; /* Center footer text */
     margin-top: 20px; /* Space above footer */
     color: #777; /* Footer text color */
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
 }
